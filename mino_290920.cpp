@@ -1,3 +1,4 @@
+/// task : https://codeforces.com/contest/346/problem/B?fbclid=IwAR2Nfq0EUtio7tqlO9jqrGyxllaTq8jjImdXmvvkxXEGwIxgDjXh0yuPx7w
  // i'm wutan
 #include <bits/stdc++.h>
 #define io_faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
