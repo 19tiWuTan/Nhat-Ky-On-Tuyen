@@ -1,7 +1,15 @@
 /// task : cho đồ thị DAG, tìm 1 cạnh (u -> v) sao cho tất cả đường đi dài nhất đều đi qua cạnh này và đường đi dài nhất đi qua u nhưng không đi qua (u -> v) là  nhỏ nhất
 
-/// 
+/// xây dựng g[2][N]
+/// trong đó g[0][u] là đường đi dài nhất xuât phát từ u, g[1][u] là đường đi dài nhì xuất phát từ u
+/// sử dụng topo để xây dựng mảng g này
 
+/// ta sẽ xác định xem cạnh nào mà tất cả các đường đi dài nhất chắc chắn đi qua cạnh này
+/// sử dụng BFS, bắt đầu từ những đỉnh có có g[0][u] là lớn nhất
+/// ta sẽ xác định từng lớp trong bfs
+/// cạnh (u -> v) là cạnh duy nhất ( tất cả các đường đi dài nhất đều đi qua cạnh này) khi từ lớp pre(u) đến lớp cur(u) chỉ có 1 cạnh và từ cur(u) đến nex(u) cũng chỉ có 1 cạnh
+/// khi cạnh (u -> v) là duy nhất, do tất cả đường đi dài nhất đều đi qua cạnh này
+/// nên đường đi dài nhất còn lại sau khi xóa cạnh này = max(g[0][i]) - g[1][u] ( i = 1.. n)
 // i'm wutan
 #include <bits/stdc++.h>
 #define io_faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
