@@ -1,19 +1,126 @@
 /// task : cho đồ thị DAG, tìm 1 cạnh (u -> v) sao cho tất cả đường đi dài nhất đều đi qua cạnh này và đường đi dài nhất đi qua u nhưng không đi qua (u -> v) là  nhỏ nhất
-/// trước hết xác định tất cả các đường đi dài nhất là duy nhất ( bằng BFS ) thì tát cả đường đi dài nhất đều đi qua những cạnh này
 
-/// gọi dp[u] sẽ là dường đi dài nhất bắt đầu từ u, và  dp2[u] sẽ là đường đi dài thứ nhì bắt đầu từ u
-/// ta tạo 1 đỉnh ảo p = 0, nối p với mọi đỉnh i (i = 1.. n)
-/// gọi dfs(0) để tạo dp[u] và dp2[u]
+/// 
 
-/// để xác định xét cạnh (u->v) có phải là cạnh duy nhất hay không : 
-/// ta sẽ loang từ đỉnh u (u chắc chắn nằm trên đường đi dài nhất) ra đỉnh (v sao cho (u->v) thuộc đường đi dài nhất xuất phát từ u)
-/// cạnh (u -> v) là duy nhất khi : 
-
-/// xác định chi phí nhỏ nhất từ các cạnh duy nhất tìm được ở trên = đường đi dài nhất đến u + dp2[u]
-
-
+// i'm wutan
 #include <bits/stdc++.h>
+#define io_faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define EL cout<<'\n'
+#define pli pair<ll,int>
+#define pll pair<ll,ll>
+#define pii pair<int,int>
+#define fi first
+#define se second
+#define sz(a) int(a.size())
+#define FU(x,a,b) for(int x=int(a);x<=int(b);x++)
+#define FD(x,a,b) for(int x=int(a);x>=int(b);x--)
+#define PROB "CommemorativeRace"
 
-int main(){
+using namespace std;
+typedef long long ll;
+typedef double db;
+
+template <typename T>
+inline void read(T& x){
+    bool Neg = false;
+    char c;
+    for (c = getchar(); c < '0' | c > '9'; c = getchar())
+        if (c == '-') Neg = !Neg;
+    x = c - '0';
+    for (c = getchar(); c >= '0' && c <= '9'; c = getchar())
+        x = x * 10 + c - '0';
+    if (Neg) x = -x;
+}
+
+template <typename T>
+inline void write(T x){
+    if (x < 0)
+        putchar('-'); x = -x;
+    T p = 1;
+    for (T temp = x / 10; temp > 0; temp /= 10) p *= 10;
+    for (; p > 0; x %= p, p /= 10) putchar(x / p + '0');
+}
+
+void file(){
+#ifndef ONLINE_JUDGE
+	freopen(PROB".inp","r",stdin);
+	freopen(PROB".out","w",stdout);
+#endif
+}
+
+const int N = 1e5 + 2;
+int n, m, f[N], g[2][N], deg[N];
+vector < int > a[N], b[N];
+bool vis[N];
+
+void readinp(){
+    cin >> n >> m;
+    FU(i, 1, m){
+        int u, v;
+        cin >> u >> v;
+        deg[u]++;
+        b[v].push_back(u);
+        a[u].push_back(v);
+    }
+}
+
+
+void solve(){
+    FU(i, 1, n) g[0][i] = g[1][i] = -1e9;
+    queue < int > Q;
+    FU(i, 1, n) if (!deg[i]){
+        Q.push(i); g[0][i] = 0;
+    }
+    while (!Q.empty()){
+        int u = Q.front();
+        Q.pop();
+        for (auto v : b[u]){
+            deg[v]--;
+            if (deg[v] == 0) Q.push(v);
+            if (g[0][v] < g[0][u] + 1){
+                g[1][v] = g[0][v];
+                g[0][v] = g[0][u] + 1;
+            }
+            else g[1][v] = max(g[1][v], g[0][u] + 1);
+            g[1][v] = max(g[1][v], g[1][u] + 1);
+        }
+    }
+    FU(i, 1, n) deg[i] = 0;
+
+    int longest = 0;
+    FU(i, 1, n) longest = max(longest, g[0][i]);
+
+    FU(i, 1, n) vis[i] = false;
+    FU(i, 1, n) if (g[0][i] == longest) vis[i] = true, Q.push(i);
+    int res = N;
+    while (!Q.empty()){
+        int u = Q.front();
+        int m = sz(Q);
+        FU(i, 1, m){
+            int v = Q.front();
+            Q.pop();
+            for (auto j : a[v]) if (!vis[j]){
+                if (g[0][j] + 1 == g[0][v])
+                    Q.push(j), vis[j] = true;
+            }
+        }
+        if (m == 1 && sz(Q) == 1)
+            res = min(res, longest - g[0][u] + max(0, g[1][u]));
+    }
+    cout << (res == N ? longest : res);
 
 }
+
+int main(){
+    io_faster
+    file();
+    int t = 1;
+//    cin >> t;
+    while (t--){
+        readinp();
+        solve();
+    }
+}
+
+
+
