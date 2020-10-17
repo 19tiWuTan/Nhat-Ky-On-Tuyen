@@ -57,9 +57,8 @@ void solve(){
     với đoạn thứ j kết thúc ở phần tử a[i]
     thì f[i][j] = max{f[i-1][j], (gắn a[i] vào đoạn trước đó)
                       f[d][j-1]} + a[i] (tạo đoạn mới từ d + 1.. i)
-    nhận thấy f[d][j-1] tuyến tính, nên ta có thể dùng biến mx lưu
-    trong đó mx = max(f[d][j-1]) với d = j..i-1
-
+    nhận thấy f[d][j-1] tuyến tính, nên ta có thể dùng biến : mx = max(f[d][j-1]) với d = j..i-1
+    để cập nhật vào f[i][j]
 */
 
     FU(i, 0, n) FU(j, 0, k) f[i][j] = -1e18;
