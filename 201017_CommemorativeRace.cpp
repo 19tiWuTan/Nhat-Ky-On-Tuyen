@@ -7,8 +7,13 @@
 
 /// để xác định xét cạnh (u->v) có phải là cạnh duy nhất hay không : 
 /// ta sẽ loang từ đỉnh u (u chắc chắn nằm trên đường đi dài nhất) ra đỉnh (v sao cho (u->v) thuộc đường đi dài nhất xuất phát từ u)
-/// đánh số các lớp theo độ sâu khi bfs, cạnh (u->v) là duy nhất nếu lớp mà đỉnh (u) thuộc, chỉ có duy nhất đỉnh u
+/// cạnh (u -> v) là duy nhất khi : 
+
+/// xác định chi phí nhỏ nhất từ các cạnh duy nhất tìm được ở trên = đường đi dài nhất đến u + dp2[u]
 
 
-///
+#include <bits/stdc++.h>
 
+int main(){
+
+}
