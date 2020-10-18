@@ -7,7 +7,8 @@
 /// ta sẽ xác định xem cạnh nào mà tất cả các đường đi dài nhất chắc chắn đi qua cạnh này
 /// sử dụng BFS, bắt đầu từ những đỉnh có có g[0][u] là lớn nhất
 /// ta sẽ xác định từng lớp trong bfs
-/// cạnh (u -> v) là cạnh duy nhất ( tất cả các đường đi dài nhất đều đi qua cạnh này) khi từ lớp pre(u) đến lớp cur(u) chỉ có 1 cạnh và từ cur(u) đến nex(u) cũng chỉ có 1 cạnh
+/// cạnh (u -> v) là cạnh duy nhất ( tất cả các đường đi dài nhất đều đi qua cạnh này) khi từ lớp của đến lớp của v chỉ có 1 cạnh
+/// và từ lớp của v đến lớp kế tiếp cũng chỉ có 1 cạnh
 /// khi cạnh (u -> v) là duy nhất, do tất cả đường đi dài nhất đều đi qua cạnh này
 /// nên đường đi dài nhất còn lại sau khi xóa cạnh này = max(g[0][i]) - g[1][u] ( i = 1.. n)
 // i'm wutan
@@ -112,6 +113,8 @@ void solve(){
                     Q.push(j), vis[j] = true;
             }
         }
+	    /// m sẽ là số lượng cạnh từ lớp của u đi vào lớp v
+	    // sz(Q) sẽ là số lượng cạnh từ lớp của v đi ra
         if (m == 1 && sz(Q) == 1)
             res = min(res, longest - g[0][u] + max(0, g[1][u]));
     }
