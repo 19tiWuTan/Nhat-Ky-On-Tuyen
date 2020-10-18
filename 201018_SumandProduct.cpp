@@ -4,6 +4,9 @@
   
   nhận thấy tích càng to càng khó tìm thêm số để cộng vào sum để pro = sum
   để 'kiềm hãm' giá trị pro và tăng sum thì chỉ có cách nhân thêm số 1, trong khi đó sum tăng thêm 1
+  nhưng nếu chạy từng số 1 để tăng vào biến sum thì có thể quá thời gian, do vậy ta hãy thử nhảy 1 lần 1 đoạn gồm toàn số 1 
+  nex[i] = 0, i không nằm trong đoạn toàn số 1
+  nex[i] != 0 sẽ là vị trí cuối cùng trong đoạn toàn số 1 mà i thuộc mà tại đó a[nex[i]] = 1
   tuy là 2 for nhưng for thứ j chỉ chạy tối đa 48 lần :) (1e9 x 2e5 xấp xỉ
 */
 
