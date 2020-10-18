@@ -30,8 +30,8 @@ output :
   
   dể tính trung bình rank ta cần tính tổng rank của từng thí sinh qua từng ngày
   
-  thứ hạng của 1 thằng trong 1 ngày sẽ bằng số lượng thí sinh có điểm cao hơn nó trong ngày đó + 1
-  thì tổng thứ hạng của 1 thằng trong W ngày sẽ bằng tổng những thí sinh có điểm cao hơn nó qua từng ngày + W
+  thứ hạng của 1 thí sinh trong 1 ngày sẽ bằng số lượng thí sinh có điểm cao hơn nó trong ngày đó + 1
+  thì tổng thứ hạng của 1 thí sinh trong W ngày sẽ bằng tổng số lượng thí sinh có điểm cao hơn nó qua từng ngày + W
   
   tạo một vector a[point] chứa {L, R, p} với ý nghĩa : thí sinh có số hiệu p sẽ có point điểm trong các ngày [L,R]
   
