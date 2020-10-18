@@ -6,6 +6,9 @@
   -> đồ thị hai phía
   -> kiến thức : tập phủ đỉnh trong đồ thị hai phía
   kết quả sẽ  = n + m - maxmatching();
+  tại sao số lượng phần tử cần xóa lại là cặp ghép cực đại : 
+  đặt res = maxmathching()
+  nếu số lượng xóa < res thì sẽ còn xót lại vài cặp (i, j) mà gcd(a[i], b[j]) > 1 
   
 */
 
