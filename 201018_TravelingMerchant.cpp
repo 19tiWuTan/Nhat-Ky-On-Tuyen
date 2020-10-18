@@ -26,5 +26,6 @@ Yêu cầu: Hỏi giá trị lớn nhất mà anh T có thể có khi di chuyể
 quy bài toán về Cho L, R tìm max(Aj - Ai) (L <= i <= j <= R) ( với S < T)
                              max(Ai - Aj ) (với S > T)
                              
-
+đặt B[i] = A[i+1] - A[i]
+=> A[j] - A[i] max => B[i] + B[i+1] + .. B[j - 1] max
 */
