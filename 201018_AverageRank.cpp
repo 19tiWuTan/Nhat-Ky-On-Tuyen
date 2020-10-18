@@ -29,11 +29,6 @@ output :
   and so on...
   
   rank = số thằng có số điểm lớn hon + 1
-  
-  vector < {Tl, Tr, p} > adj[point]  ( point = w -> 0 )
-  sum[p] = sum(a[L->R])
-  duyệt từng [Tl, Tr, p] : adj[point] 
-  update a[i] += 1 ( với mọi i thuộc [L,R] )
-  
+ 
   
 */
