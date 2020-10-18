@@ -16,6 +16,9 @@
 // gọi f1[i][j] sẽ là diện tích của tam giác có diện tích lớn nhất có đáy là a[i] và a[j], đỉnh còn lại nằm trên đường thẳng nối (a[i], a[j])
 // gọi f2[i][j] sẽ là diện tích của tam giác có diện tích lớn nhất có đáy là a[i] và a[j], đỉnh còn lại nằm dưới đường thẳng nối (a[i], a[j])
 
+
+
+
 // i'm wutan
 #include <bits/stdc++.h>
 #define io_faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
