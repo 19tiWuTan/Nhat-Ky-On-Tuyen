@@ -1,6 +1,6 @@
 /// task : cho N số thực, và M truy vấn dạng l..r , yêu cầu xác định xem đoạn l..r có đẹp hay không
 /// một đoạn gồm n phần tử gọi là đẹp nếu tồn tại ít nhất 1 số xuất hiện nhiều hơn hoặc bằng n div 2 + 1 lần
-
+/// kiến thức : Mo's algo
 // i'm wutan
 #include <bits/stdc++.h>
 #define io_faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
@@ -83,13 +83,13 @@ void del(int x){
 void solve(){
     compress();
     sort (que + 1, que + 1 + m, cmp);
-    int L = 1, R = 1;
+    int L = 1, R = 0;
     FU(i, 1, m){
         int l = que[i].l, r = que[i].r;
-        while (l > L)  del(a[L++]);
         while (l < L) add(a[--L]);
-        while (r >= R) add(a[R++]);
-        while (r + 1 < R) del(a[--R]);
+        while (r > R) add(a[++R]);
+        while (l > L) del(a[L++]);
+        while (r < R) del(a[R--]);
 
         int sl = (que[i].r - que[i].l + 1);
         res[que[i].id] = (st[1] >= sl / 2 + 1);
@@ -108,6 +108,4 @@ int main(){
         solve();
     }
 }
-
-
 
