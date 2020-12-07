@@ -1,6 +1,20 @@
 /// task : cho N số thực, và M truy vấn dạng l..r , yêu cầu xác định xem đoạn l..r có đẹp hay không
 /// một đoạn gồm n phần tử gọi là đẹp nếu tồn tại ít nhất 1 số xuất hiện nhiều hơn hoặc bằng n div 2 + 1 lần
 /// kiến thức : Mo's algo
+
+/*
+    trong mỗi đoạn l, r
+    mình chỉ cần kiểm tra phần tử có số lần xuất hiện nhiều nhất
+    nếu nó nhiều hơn (r - l + 1) div2 thì là true
+    IT sẽ quản lý điều này
+
+
+    trong lúc thực hiện di chuyển 2 con trỏ l, r 
+    mảng cnt[i] sẽ cho biết phần tử thứ i xuất hiện bao nhiêu lần trong đoạn [l,r] 
+    và cây IT sẽ lưu giá trị i có cnt[i] lớn nhất
+
+*/
+
 // i'm wutan
 #include <bits/stdc++.h>
 #define io_faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
@@ -52,7 +66,7 @@ void compress(){
     }
 }
 
-bool cmp (query t1, query t2){
+bool cmp (query t1, query t2){ /// ta chia dãy thành căn N đoạn , mỗi đoạn độ dài căn N, sort truy vấn theo thứ tự block tăng dần
     int S = sqrt(n);
     if (t1.l / S != t2.l / S)
         return t1.l / S < t2.l / S;
@@ -83,13 +97,15 @@ void del(int x){
 void solve(){
     compress();
     sort (que + 1, que + 1 + m, cmp);
-    int L = 1, R = 0;
+    int L = 1, R = 0; /// quản lý 2 con trỏ này , đảm bảo qua mỗi truy vấn thứ i L = que[i].L và R = que[i].R
     FU(i, 1, m){
         int l = que[i].l, r = que[i].r;
-        while (l < L) add(a[--L]);
-        while (r > R) add(a[++R]);
-        while (l > L) del(a[L++]);
-        while (r < R) del(a[R--]);
+        /// 4 cái while này , luôn ưu tiên truy vấn add trước, rồi mới đến del 
+        /// lưu ý ++ ( hoặc -- ) trước (hoặc sau) khi di chuyển 2 con trỏ
+        while (l < L) add(a[--L]);  /// tức đoạn [l,L] chưa được đưa vào quản lý
+        while (r > R) add(a[++R]);  /// tức đoạn [R,r] chưa được đưa vào quản lý
+        while (l > L) del(a[L++]); /// đi ra khỏi đoạn [L,l]
+        while (r < R) del(a[R--]); /// đi ra khỏi đoạn [r,R]
 
         int sl = (que[i].r - que[i].l + 1);
         res[que[i].id] = (st[1] >= sl / 2 + 1);
