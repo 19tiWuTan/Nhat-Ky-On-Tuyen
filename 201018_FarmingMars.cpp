@@ -65,10 +65,15 @@ void compress(){
             a[b[++i].se] = cnt;
     }
 }
-
-bool cmp (query t1, query t2){ /// ta chia dãy thành căn N đoạn , mỗi đoạn độ dài căn N, sort truy vấn theo thứ tự block tăng dần
+/// ví dụ
+/// 1 2 3 4 5 6 7
+/// đoạn 1 gồm : 1 2 
+/// đoạn 2 gồm : 3 4
+/// đoạn 3 gồm : 5 6
+/// đoạn 4 gồm : 7
+bool cmp (query t1, query t2){ /// ta chia dãy thành căn N đoạn , mỗi đoạn độ dài căn N, sort truy vấn theo thứ tự đoạn tăng dần
     int S = sqrt(n);
-    if (t1.l / S != t2.l / S)
+    if (t1.l / S != t2.l / S) /// X / S sẽ là thứ tự đoạn mà X sẽ thuộc
         return t1.l / S < t2.l / S;
     return t1.r < t2.r;
 }
@@ -102,10 +107,10 @@ void solve(){
         int l = que[i].l, r = que[i].r;
         /// 4 cái while này , luôn ưu tiên truy vấn add trước, rồi mới đến del 
         /// lưu ý ++ ( hoặc -- ) trước (hoặc sau) khi di chuyển 2 con trỏ
-        while (l < L) add(a[--L]);  /// tức đoạn [l,L] chưa được đưa vào quản lý
-        while (r > R) add(a[++R]);  /// tức đoạn [R,r] chưa được đưa vào quản lý
-        while (l > L) del(a[L++]); /// đi ra khỏi đoạn [L,l]
-        while (r < R) del(a[R--]); /// đi ra khỏi đoạn [r,R]
+        while (l < L) add(a[--L]);  /// tức đoạn [l,L] chưa được đưa vào quản lý, -- trước là do mình đã xử lý vị trí L rồi, giảm đi rồi mới xử lý tiếp
+        while (r > R) add(a[++R]);  /// tức đoạn [R,r] chưa được đưa vào quản lý, ++ trước là do mình đã xử lý vị trí R rồi, ...
+        while (l > L) del(a[L++]); /// đi ra khỏi đoạn [L,l] , ++ sau là do khi mình đi ra khỏi đoạn [L, l] mình phải xóa đi vị trí L đã xử lý trước đó
+        while (r < R) del(a[R--]); /// đi ra khỏi đoạn [r,R] , ...
 
         int sl = (que[i].r - que[i].l + 1);
         res[que[i].id] = (st[1] >= sl / 2 + 1);
