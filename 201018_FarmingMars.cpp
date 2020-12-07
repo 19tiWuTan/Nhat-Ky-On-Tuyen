@@ -109,7 +109,8 @@ void solve(){
         /// lưu ý ++ ( hoặc -- ) trước (hoặc sau) khi di chuyển 2 con trỏ
         while (l < L) add(a[--L]);  /// tức đoạn [l,L] chưa được đưa vào quản lý, -- trước là do mình đã xử lý vị trí L rồi, giảm đi rồi mới xử lý tiếp
         while (r > R) add(a[++R]);  /// tức đoạn [R,r] chưa được đưa vào quản lý, ++ trước là do mình đã xử lý vị trí R rồi, ...
-        while (l > L) del(a[L++]); /// đi ra khỏi đoạn [L,l] , ++ sau là do khi mình đi ra khỏi đoạn [L, l] mình phải xóa đi vị trí L đã xử lý trước đó
+        while (l > L) del(a[L++]); /// đi ra khỏi đoạn [L,l] , ++ sau là do khi mình đi ra khỏi đoạn [L, l] mình phải xóa đi vị trí L đã xử lý trước đó, 
+                                   /// nếu ++ trước thì sẽ bị xót không xóa phần tử L, lúc này sẽ bị dư
         while (r < R) del(a[R--]); /// đi ra khỏi đoạn [r,R] , ...
 
         int sl = (que[i].r - que[i].l + 1);
