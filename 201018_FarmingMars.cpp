@@ -1,8 +1,8 @@
 /// task : cho N số thực, và M truy vấn dạng l..r , yêu cầu xác định xem đoạn l..r có đẹp hay không
 /// một đoạn gồm n phần tử gọi là đẹp nếu tồn tại ít nhất 1 số xuất hiện nhiều hơn hoặc bằng n div 2 + 1 lần
 /// kiến thức : Mo's algo
-
 /*
+    do là đề cho số thực, nên mình thực hiện nén lại đưa về số nguyên để dễ xử lý
     trong mỗi đoạn l, r
     mình chỉ cần kiểm tra phần tử có số lần xuất hiện nhiều nhất
     nếu nó nhiều hơn (r - l + 1) div2 thì là true
